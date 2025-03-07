@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchButton.style.background = '#70594b';
     fetchButton.style.border = '2px solid #dbd2cc';
     fetchButton.style.color = '#dbd2cc';
+    fetchButton.style.fontSize = '20px';
 
     const resultsContainer = document.createElement('div');
     resultsContainer.id = 'results';
@@ -49,7 +50,7 @@ function fetchMonsters() {
                 <p>Tipo: ${monster.type}</p>
                 <p>Especie: ${monster.species}</p>
                 <p>Elementos: ${monster.elements}</p>
-                <p>Localidad: ${monster.locations}</p>
+                <p>Descripción: ${monster.description}</p>
                 `;
 
                 monsterInfo.style.border = '8px solid #dbd2cc';
