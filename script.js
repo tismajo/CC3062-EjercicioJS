@@ -5,10 +5,14 @@ document.addEventListener('DOMContentLoaded', () => {
     container.style.alignItems = 'center';
     container.style.justifyContent = 'center';
     container.style.height = '100vh';
+    container.style.backgroundColor='#af9483';
 
     const fetchButton = document.createElement('button');
-    fetchButton.textContent = 'Fetch Fruits';
-    fetchButton.onclick = fetchFruits;
+    fetchButton.textContent = '¡Monstruos!';
+    fetchButton.onclick = fetchMonsters;
+    fetchButton.style.background = '#70594b';
+    fetchButton.style.border = '2px solid #dbd2cc';
+    fetchButton.style.color = '#dbd2cc';
 
     const resultsContainer = document.createElement('div');
     resultsContainer.id = 'results';
@@ -17,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.appendChild(container);
 });
 
-function fetchFruits() {
+function fetchMonsters() {
     const resultsContainer = document.getElementById('results');
     resultsContainer.innerHTML = 'Loading monsters...';
 
@@ -35,6 +39,27 @@ function fetchFruits() {
             resultsContainer.style.gridTemplateColumns = 'repeat(3, 1fr)';
             resultsContainer.style.gap = '10px';
 
-            dataDisplay = data.sort(() => Math.random() - 0.5).slice(0,10);
-        });
+            const randomMonsters = data.sort(() => Math.random()-0.5).slice(0,9);
+
+            randomMonsters.forEach(monster => {
+                const monsterInfo = document.createElement('div');
+                monsterInfo.innerHTML =`
+                <p>ID: ${monster.id}</p>
+                <p>Nombre: ${monster.name}</p>
+                <p>Tipo: ${monster.type}</p>
+                <p>Especie: ${monster.species}</p>
+                <p>Elementos: ${monster.elements}</p>
+                <p>Localidad: ${monster.locations}</p>
+                `;
+
+                monsterInfo.style.border = '8px solid #dbd2cc';
+                monsterInfo.style.padding = '10px';
+                monsterInfo.style.borderRadius = '16px';
+                monsterInfo.style.backgroundColor = '#70594b';
+                monsterInfo.style.color = '#dbd2cc';
+                resultsContainer.appendChild(monsterInfo);            
+            });
+            document.querySelector('button:nth-of-type(2)').style.display = 'block';
+        })
+        .catch(error => console.error('Error fetching monsters:', error));
 }
